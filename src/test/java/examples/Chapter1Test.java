@@ -20,7 +20,6 @@ public class Chapter1Test {
                     log().body();
     }
 
-
     @Test
     public void getResponseBody() {
         get("http://zippopotam.us/us/90210").then().log().body();
