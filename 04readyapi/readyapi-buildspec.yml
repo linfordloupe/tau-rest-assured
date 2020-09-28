@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto8
+  build:
+    commands:
+      - echo Build started on `date`
+      - chmod -R 755 .
+#      - export BUCKET=loupe-api-automation
+#      - cd ApiAutomation
+      - mvn clean test
+#      - mvn package shade:shade -DskipTests=true
+      - echo Build completed on `date`
+#      - sam package --template-file template.yml --s3-bucket $BUCKET --output-template-file packaged-template.yml --s3-prefix Packaged_Jars
+#      - sam deploy --template-file ./packaged-template.yml --stack-name loupe-api-automation-lambda-stack --capabilities CAPABILITY_IAM
+  post_build:
+    commands:
+      - echo Deploy completed on `date`
+artifacts:
+  files:
+    - ApiAutomation/target/ApiAutomation-0.0.1-SNAPSHOT.jar
